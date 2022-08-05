@@ -1,3 +1,4 @@
+import shutil
 import os
 
 from pyftpdlib.authorizers import DummyAuthorizer
@@ -12,8 +13,9 @@ path = 'C:/FTPServer/'
 
 # Check if the FTP server folder already exists.
 if( os.path.exists( path ) == False ):
-    # The folder does not already exist, create the folder.
-    os.makedirs( path )
+    # The folder does not already exist, create the folder and
+    # copy the Contents of the FileSystem folder onto the FTP Server.
+    shutil.copytree( 'FileSystem', path )
 
 # Create an instance of the DummyAuthorizer class.
 authorizer = DummyAuthorizer()
