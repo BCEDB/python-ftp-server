@@ -1,13 +1,24 @@
 import shutil
 import os
 
-from pyftpdlib.authorizers import DummyAuthorizer
-from pyftpdlib.handlers import FTPHandler
-from pyftpdlib.servers import FTPServer
+try:
+    # Try to import the pyftpdlib library.
+    from pyftpdlib.authorizers import DummyAuthorizer
+    from pyftpdlib.handlers import FTPHandler
+    from pyftpdlib.servers import FTPServer
+
+except ImportError:
+    # If the pyftplib library cannot be imported. Try to install it for the user.
+    os.system('python -m pip install pyftpdlib')
+
+    # Then try to import the pyftpdlib library (again).
+    from pyftpdlib.authorizers import DummyAuthorizer
+    from pyftpdlib.handlers import FTPHandler
+    from pyftpdlib.servers import FTPServer
 
 host = '127.0.0.1'
 port = 21
-username = 'user'
+username = 'username'
 password = 'password'
 path = 'C:/FTPServer/'
 
